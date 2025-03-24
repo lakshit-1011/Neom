@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { BsHandThumbsUp } from "react-icons/bs";
-
 import serverData from "../assets/Dummy_Data/serverData";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
@@ -19,7 +18,6 @@ export default function ProfilePage() {
   const userName = useRef(null);
   const userEmail = useRef(null);
   const userMobile = useRef(null);
-  // const fileInputRef = useRef(null);
   const [toggle, setToggle] = useState(true);
 
   const notify = () =>
@@ -67,6 +65,7 @@ export default function ProfilePage() {
     }
   };
 
+
   const x = interests?.split(",") || [];
   console.log("interests", x);
   let initlikearray = [];
@@ -74,11 +73,14 @@ export default function ProfilePage() {
     const val = x.includes(interestArray[i][0]);
     initlikearray.push([interestArray[i][0], val]);
   }
+
+
   console.log("init array",initlikearray);
   const [likeArray, setLikeArray] = useState(initlikearray);
   const [inputValue, setInputValue] = useState("");
-  // const [int, setInt] = useState(initlikearray);
-
+  const [name,setName]=useState("");
+  const [mail,setMail]=useState("");
+  const [num,setNum]=useState("");
   console.log("likearray in profile page", likeArray);
   console.log("interested array in profile page", interestArray);
 
@@ -91,12 +93,15 @@ export default function ProfilePage() {
     ]);
 
     setLikeArray(updatedLikeArray);
-    // setInt(updatedLikeArray);
     const selectedValue = updatedLikeArray
       .filter((val) => val[1])
       .map((val) => val[0])
       .join(", ");
     setInputValue(selectedValue);
+
+    userName.current.value = name;
+    userEmail.current.value = mail;
+    userMobile.current.value = num;
   }
   
   function handleImage(value) {
@@ -124,6 +129,10 @@ export default function ProfilePage() {
       .map((val) => val[0])
       .join(", ");
     setInputValue(selectedValue);
+
+    setMail(email);
+    setName(fullName);
+    setNum(mobileNo);
   }, [interests]);
 
   // useEffect(() => {
@@ -232,7 +241,7 @@ export default function ProfilePage() {
               <br />
               <input
                 disabled={toggle}
-                defaultValue={fullName}
+                defaultValue={name}
                 ref={userName}
                 type="text"
                 className=" outline-gray-300 w-[320px] h-[40px] border border-[#DDDDDD] rounded-[4px] placeholder: pl-2 text-[12px]"
@@ -249,7 +258,7 @@ export default function ProfilePage() {
               <input
                 disabled={toggle}
                 ref={userEmail}
-                defaultValue={email}
+                defaultValue={mail}
                 type="text"
                 className=" outline-gray-300 w-[320px] h-[40px] border border-[#DDDDDD] rounded-[4px] placeholder: pl-2 text-[12px]"
               />
@@ -267,7 +276,7 @@ export default function ProfilePage() {
                 ref={userMobile}
                 style={{ fontFamily: "BrownLight, sans-serif" }}
                 type="text"
-                defaultValue={mobileNo}
+                defaultValue={num}
                 className=" outline-gray-300 w-[320px] h-[40px] border border-[#DDDDDD] rounded-[4px] placeholder: pl-2 text-[12px]"
               />
               <br />
