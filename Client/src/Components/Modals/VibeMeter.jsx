@@ -19,7 +19,7 @@ const reactions = [
   { min: -26, max: -30, src: anger, alt: "Segment 6" },
 ];
 
-export default function VibeMeter({ closeVibeModal, handleVibeSubmit }) {
+export default function VibeMeter({ closeVibeModal, handleVibeSubmit,txt }) {
   const userDetails = useSelector((store) => store.user);
   const { authorized, fullName } = userDetails;
 
@@ -79,6 +79,7 @@ export default function VibeMeter({ closeVibeModal, handleVibeSubmit }) {
         </div>
         <div className="mt-[18px]">
           <textarea
+            value={txt}
             placeholder="Share your experience with us..."
             className="outline-gray-700 text-black  placeholder: pl-[10px] text-left placeholder:text-[#000000] text-[14px] leading-6 tracking-[0.35px] opacity-90 w-full h-[150px] outline-none bg-white border border-gray-600 pt-1  rounded-lg "
           />

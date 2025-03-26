@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function TimeCircle() {
   const initialMinutes = 52;
@@ -27,24 +29,30 @@ export default function TimeCircle() {
   }, [minutes]);
 
   const timeData = [
-    { label: "Days", value: 0, borderColor: "border-yellow-200" },
-    { label: "Hours", value: 0, borderColor: "border-blue-400" },
-    { label: "Minutes", value: minutes, borderColor: "border-orange-300" },
-    { label: "Seconds", value: seconds, borderColor: "border-red-500" },
+    { label: "Days", value: 1, maxValue: 2, color: "#fcd34d" },
+    { label: "Hours", value: 14, maxValue: 24, color: "#60a5fa" },
+    { label: "Minutes", value: minutes, maxValue: 60, color: "#fb923c" },
+    { label: "Seconds", value: seconds, maxValue: 60, color: "#ef4444" },
   ];
 
   return (
     <div className="absolute w-[400px] mx-auto top-[220px] flex justify-evenly items-center">
       {timeData.map((item, index) => (
-        <div
-          key={index}
-          className={`flex flex-col items-center justify-center rounded-[100px] w-[80px] h-[80px] border ${item.borderColor}`}
-        >
-          <p className="text-sm text-[#ffffff] tracking-wide opacity-80 font-normal">
+        <div key={index} className="flex flex-col items-center w-[80px] h-[80px]">
+          <div style={{ width: 80, height: 80 }}>
+            <CircularProgressbar
+              value={item.value}
+              maxValue={item.maxValue}
+              text={`${item.value}`}
+              styles={buildStyles({
+                textColor: "#fff",
+                pathColor: item.color,
+                trailColor: "#374151",
+              })}
+            />
+          </div>
+          <p className="text-sm text-[#ffffff] tracking-wide opacity-80 font-normal mt-1">
             {item.label}
-          </p>
-          <p className="text-[22px] tracking-wider text-[#ffffff] font-semibold">
-            {item.value}
           </p>
         </div>
       ))}

@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
+
 import { dataDashBoardCard2 } from "../assets/Dummy_Data/data";
 import Slider from "../Components/Slider/Slider";
+
 import DashBoardCard1 from "../Components/DashboardCards/DashBoardCard1";
 import DashBoardCard3 from "../Components/DashboardCards/DashBoardCard3";
 import DashBoardCard4 from "../Components/DashboardCards/DashBoardCard4";
 import DashBoardCard2 from "../Components/DashboardCards/DashBoardCard2";
 import DashBoardMain from "../Components/DashboardCards/DashBoardMain";
 import Map from "../Components/DashboardCards/Map";
+
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
+
 import { useSelector } from "react-redux";
 import MyModal from "../Components/Modals/MyModal";
 

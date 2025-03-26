@@ -14,19 +14,18 @@ export default function DashBoardCard1({ list }) {
   console.log(stars);
  
   return (
-    <div className="w-[37.5rem] h-[15.5rem] mt-[1.875rem] border border-[#222222] rounded-[0.75rem] opacity-100 flex justify-center items-center">
+    <div  onClick={() => navigate(`/details2/eventId/${list.id}`,{state:{text:"sch",data:list}})} className="w-[37.5rem] h-[15.5rem] cursor-pointer mt-[1.875rem] border border-[#222222] rounded-[0.75rem] opacity-100 flex justify-center items-center">
       <div className="w-[13.1875rem] h-[15.375rem] relative ">
         <img
-          onClick={() => navigate(`/details2/eventId/${list.id}`,{state:{data:list}})}
           className="w-[13.1875rem] h-full rounded-l-[0.75rem] object-cover cursor-pointer"
           src={list.image_main}
           alt={list.event_type_title}
         />
         <img
-          className="absolute bottom-[0.575rem] opacity-80 right-[0.375rem] h-[2.275rem] z-[70]"
+          className="absolute bottom-[0.575rem] opacity-80 right-[1.975rem] h-[2.275rem] z-[70]"
           src={list.image_cloud}
         />
-        <p  style={{ fontFamily: "BrownLight, sans-serif" }}  className="absolute bottom-[.725rem] z-[100] right-[.35rem] text-white font-[900] text-[12px]">{list.temp}°C</p>
+        <p  style={{ fontFamily: "BrownLight, sans-serif" }}  className="absolute bottom-[1.125rem] z-[100] right-[.35rem] text-white font-[900] text-[12px]">{list.temp}°C</p>
       </div>
       <div className="w-[19.5rem] h-full rounded-r-[0.75rem] pt-[0.625rem] flex flex-col items-start pl-[0.7875rem] ">
         <h1
@@ -59,7 +58,7 @@ export default function DashBoardCard1({ list }) {
         >
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat…{" "}
-          <span  onClick={() => navigate(`/details2/eventId/${list.id}`,{state:{text:"sch",data:list}})} className="text-[#FF385C] cursor-pointer">read more</span>
+          <span className="text-[#FF385C] cursor-pointer">read more</span>
         </p>
 
         <ul className="w-[18.125rem] h-[3.5rem] mt-[0.170rem] flex flex-col gap-[0.49375rem]">

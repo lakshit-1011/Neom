@@ -31,8 +31,8 @@ const initialUserState = {
   attendedEvents: [],
   favouriteEvents: [],
   serverProfile: [],
-  feedbackEvents:[],
-  interests:""
+  feedbackEvents: [],
+  interests: "",
 };
 
 export default function userReducer(state = initialUserState, action) {
@@ -153,8 +153,6 @@ export function getAllUserData() {
   };
 }
 
-// function working on filtering the cards
-
 // handle favorite card
 
 export const handleFavouriteCard = (card) => async (dispatch, getState) => {
@@ -231,22 +229,6 @@ export const HandleProfile = (formData) => async (dispatch, getState) => {
     await dispatch(getAllUserData());
   }
 };
-
-// export const handleLike = (value) => (dispatch, getState) => {
-//   const state = getState();
-//   const checks = state.user.interestArray;
-//   const clickedValue = checks.findIndex((check) => check[0] === value);
-//   console.log(clickedValue);
-//   console.log("intereested before array in userslice",checks);
-
-//   if (checks[clickedValue][1] === false) {
-//     checks[clickedValue][1] = true;
-//   } else {
-//     checks[clickedValue][1] = false;
-//   }
-//   console.log("intereested after array in userslice",checks);
-//   dispatch({ type: "user/Like", payload: checks });
-// };
 
 export const handleInputChange = (likeArray) => (dispatch, getState) => {
   dispatch({ type: "user/InputHandle", payload: likeArray });
@@ -361,7 +343,7 @@ export const feedbackData =
       rating: stars,
       user_feedback: feedback,
       user_name: state.user.fullName,
-      userId:state.user.user_id,
+      userId: state.user.user_id,
     };
     console.log(data);
     const res = await fetch("http://localhost:5000/card/feedback", {

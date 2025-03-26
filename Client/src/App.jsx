@@ -1,6 +1,5 @@
 import "./App.css";
 import MyModal from "./Components/Modals/MyModal";
-// import VibeMeter from "./Pages/VibeMeter";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyFavrouites from "./Pages/MyFavrouites";
 import DashBoard from "./Pages/DashBoard";

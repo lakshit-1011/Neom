@@ -2,7 +2,7 @@ require("dotenv").config();
 const pool = require("../../Config/database");
 const jwt = require("jsonwebtoken");
 
-const { getAllCardDetails, getFavoriteEvents, getAttendedEvents, getScheduledEvents, getServerRecommendedEvents, getServerTopEvents, getProfileQuestions, getFeedBackPageData } = require("../../IntialData/userDataQuery");
+const { getAllCardDetails, getFavoriteEvents, getAttendedEvents, getScheduledEvents, getServerRecommendedEvents, getServerTopEvents, getProfileQuestions, getFeedBackPageData } = require("./userdataQuery");
 
 console.log("in user verify controller file");
 

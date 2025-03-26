@@ -14,6 +14,7 @@ export default function MyModal({ detailedData, closeModal, cardid = null }) {
   const userDetails = useSelector((store) => store.user);
   const { authorized, fullName } = userDetails;
   const [vibe, setVibe] = useState(false);
+  const [text,setTxt]=useState("");
   const [starcolor, setStarColor] = useState({});
   // const [msg,setMsg]=useState(true);
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export default function MyModal({ detailedData, closeModal, cardid = null }) {
   function handleModalSubmit() {
     console.log("handle submit call");
     const feedback = userfeedback.current.value;
+    setTxt(feedback);
     if (cardid === null) {
       card_id = detailedData.id;
       console.log(card_id);
@@ -210,6 +212,7 @@ export default function MyModal({ detailedData, closeModal, cardid = null }) {
         <VibeMeter
           handleVibeSubmit={handleVibeSubmit}
           closeVibeModal={closeVibeModal}
+          txt={text}
         />
       )}
     </>

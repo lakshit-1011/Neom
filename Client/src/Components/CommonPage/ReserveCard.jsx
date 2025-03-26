@@ -1,16 +1,19 @@
+import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+
 import { formatDate, formatEventTime } from "../../util/DateFormatter";
 import store from "../../../Store";
 import { handleReserve, stripePayment } from "../../Features/User/UserSlice";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
 
 export default function ReserveCard({  datadetailedEvent }) {
   const userDetails = useSelector((store) => store.user);
   console.log(userDetails);
   const { scheduledEvents } = userDetails;
   const userSeats = useRef(null);
+  const [loader,setLoader]=useState(false);
   const [seat, setSeat] = useState(datadetailedEvent.available_seats);
   const [amount, setAmount] = useState(datadetailedEvent.price);
 
@@ -59,7 +62,9 @@ export default function ReserveCard({  datadetailedEvent }) {
         notify1();
         store.dispatch(handleReserve(card, no_of_reserveSeat));
       } else {
-        store.dispatch(stripePayment(card.id,card.name,card.image_main,amount,no_of_reserveSeat))
+        setLoader(true);
+        store.dispatch(stripePayment(card.id,card.name,card.image_main,amount,no_of_reserveSeat));
+        setLoader(false);
       }
     } catch (error) {
       console.error("Payment Error:", error);
@@ -139,12 +144,12 @@ export default function ReserveCard({  datadetailedEvent }) {
             >
               {seat} seats available <span>${amount}</span>
             </p>
-            <button
+           <button
               onClick={() => handleReserveMySeat(datadetailedEvent)}
               style={{ fontFamily: "BrownLight, sans-serif" }}
               className="w-full text-[#ffffff] cursor-pointer rounded-[4px] text-[14px] mt-[10px] px-[24px] py-[8px] bg-[#222222] flex items-center justify-center text-center"
             >
-              Reserve my seat
+             {loader===false? "Reserve my seat":"Payment Processing......"}
             </button>
           </div>
         ) : (
