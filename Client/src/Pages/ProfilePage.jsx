@@ -1,20 +1,22 @@
-import social from "../assets/img/socializing.png";
-import { FiEdit3 } from "react-icons/fi";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
+import { FiEdit3 } from "react-icons/fi";
 import { BsHandThumbsUp } from "react-icons/bs";
+
 import serverData from "../assets/Dummy_Data/serverData";
-import Header from "../Components/Header/Header";
-import Footer from "../Components/Footer/Footer";
-import { useSelector } from "react-redux";
 import { formatDobDate } from "../util/DateFormatter";
 import store from "../../Store";
 import { HandleProfile, interestedFunction } from "../Features/User/UserSlice";
-import { useEffect, useRef, useState } from "react";
+
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
+
 
 export default function ProfilePage() {
-  const navigate1 = useNavigate();
   const userName = useRef(null);
   const userEmail = useRef(null);
   const userMobile = useRef(null);
@@ -41,7 +43,6 @@ export default function ProfilePage() {
   const [pic, setPic] = useState(ProfilePic);
   const [formPic, setFormPic] = useState(null);
   const dob = formatDobDate(birthDate);
-  console.log(dob);
 
   function handleEditProfile(e) {
     e.preventDefault();
@@ -56,10 +57,8 @@ export default function ProfilePage() {
 
 
   const handleFileChange = (event) => {
-    console.log("file called");
     const file = event.target.files[0];
     if (file) {
-      console.log("Selected file:", URL.createObjectURL(file));
       setPic(URL.createObjectURL(file));
       setFormPic(file);
     }
@@ -67,22 +66,21 @@ export default function ProfilePage() {
 
 
   const x = interests?.split(",") || [];
-  console.log("interests", x);
+
   let initlikearray = [];
+
   for (let i = 0; i < interestArray.length; i++) {
     const val = x.includes(interestArray[i][0]);
     initlikearray.push([interestArray[i][0], val]);
   }
 
 
-  console.log("init array",initlikearray);
   const [likeArray, setLikeArray] = useState(initlikearray);
   const [inputValue, setInputValue] = useState("");
   const [name,setName]=useState("");
   const [mail,setMail]=useState("");
   const [num,setNum]=useState("");
-  console.log("likearray in profile page", likeArray);
-  console.log("interested array in profile page", interestArray);
+
 
   function handleCancelProfile(){
     setToggle(true);

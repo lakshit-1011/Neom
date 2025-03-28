@@ -1,15 +1,19 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { ToastContainer,toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+
+import store from "../../Store";
+import { eventFilter } from "../Features/User/UserSlice";
+
 import { dataFilters } from "../assets/Dummy_Data/data";
 import DashBoardCard3 from "../Components/DashboardCards/DashBoardCard3";
 import UpcommingButtons from "../Components/Upcomming/UpcommingButtons";
 import UpcommingButton2 from "../Components/Upcomming/UpCommingButton2";
+
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import { useSelector } from "react-redux";
-import store from "../../Store";
-import { eventFilter } from "../Features/User/UserSlice";
-import { useState } from "react";
-import { ToastContainer,toast } from "react-toastify";
-import "react-toastify/ReactToastify.css";
 
 
 export default function UpComming() {
@@ -25,10 +29,8 @@ export default function UpComming() {
   });
 
   const [showcard,setShowCards]=useState(15);
-  // cosnt [load,setLoad]=useState()
 
   const userDetails = useSelector((store) => store.user);
-  console.log(userDetails);
 
   const { authorized, fullName, totalCards,categoryValue } = userDetails;
 
@@ -36,7 +38,6 @@ export default function UpComming() {
     store.dispatch(eventFilter("event",value));
   }
 
-  console.log(totalCards);
   const totalCardsNumber=totalCards.length;
 
   function handleLoad(){

@@ -5,11 +5,10 @@ import SettingCard from "../Components/SettingComponent/SettingCard";
 import serverData from "../assets/Dummy_Data/serverData";
 
 export default function SettingsPage() {
-  
   const userDetails = useSelector((store) => store.user);
   console.log(userDetails);
 
-  const { authorized, fullName} = userDetails;
+  const { authorized, fullName } = userDetails;
   return (
     <>
       <Header />

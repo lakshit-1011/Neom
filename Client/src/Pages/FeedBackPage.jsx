@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import FeedBackCard from "../Components/FeedBackCard.jsx/FeedBackCard";
 import over from "../assets/img/overwhelmed.svg";
 import Speedometer from "../Components/Speedometer/Speedometer";
+import MyModal from "../Components/Modals/MyModal";
+
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import MyModal from "../Components/Modals/MyModal";
 
 export default function FeedBackPage() {
 

@@ -1,16 +1,18 @@
-import {
-  dataMyFavoritesCard,
-} from "../assets/Dummy_Data/data";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { ToastContainer,toast } from "react-toastify";
+import "react-toastify/ReactToastify.css";
+
+
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
+
+import { dataMyFavoritesCard} from "../assets/Dummy_Data/data";
 import DashBoardCard3 from "../Components/DashboardCards/DashBoardCard3";
 import MyFavoritesCard from "../Components/MyFavorites/MyFavoritesCard";
 import Slider from "../Components/Slider/Slider";
-import { useEffect, useState } from "react";
-import Header from "../Components/Header/Header";
-import Footer from "../Components/Footer/Footer";
-import { useSelector } from "react-redux";
-import { ToastContainer,toast } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 
 
 export default function MyFavrouites() {
@@ -18,12 +20,10 @@ export default function MyFavrouites() {
   const Navigate=useNavigate();
 
   const userDetails=useSelector((store)=>store.user);
-  console.log(userDetails);
 
   const {authorized,fullName,favouriteEvents,serverTopEventLists}=userDetails;
 
   useEffect(()=>{
-      console.log(favouriteEvents);
   },[favouriteEvents])
 
   const [currentIndexCard3, setCurrentIndexCard3] = useState(0);

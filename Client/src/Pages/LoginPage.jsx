@@ -1,5 +1,7 @@
-import { FcGoogle  } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+
+import { FcGoogle  } from "react-icons/fc";
+
 import store from "../../Store";
 import { userlogin } from "../Features/User/UserSlice";
 
@@ -16,9 +18,7 @@ export default function LoginPage({ loginHandlebyGoogle }) {
     function handleLogin(e){
       e.preventDefault();
       const fd = new FormData(e.target);
-      const data = Object.fromEntries(fd.entries());
-      console.log(data);
-    
+      const data = Object.fromEntries(fd.entries());    
       store.dispatch(userlogin(data));    
     }
     

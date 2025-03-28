@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { dataDashBoardCard2 } from "../assets/Dummy_Data/data";
 import Slider from "../Components/Slider/Slider";
@@ -13,12 +14,10 @@ import Map from "../Components/DashboardCards/Map";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 
-import { useSelector } from "react-redux";
 import MyModal from "../Components/Modals/MyModal";
 
 export default function DashBoard() {
   const userDetails = useSelector((store) => store.user);
-  console.log(userDetails);
 
   const [feebackModal, setFeedbackModal] = useState(false);
   const {
@@ -33,7 +32,6 @@ export default function DashBoard() {
     (a, b) => new Date(a.start_date) - new Date(b.start_date)
   );
 
-  console.log(sortedScheduledEvent);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndexCard2, setCurrentIndexCard2] = useState(0);
@@ -51,7 +49,6 @@ export default function DashBoard() {
   }
 
   useEffect(() => {
-    console.log(serverTopEventLists);
   }, [serverTopEventLists]);
 
   const goToPrevImage = () => {

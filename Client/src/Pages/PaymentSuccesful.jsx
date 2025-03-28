@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+
 import { handleReserve } from "../Features/User/UserSlice";
+import store from "../../Store";
+
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import store from "../../Store";
 
 export default function PaymentSuccessful() { 
     const navigate = useNavigate();
@@ -14,7 +15,6 @@ export default function PaymentSuccessful() {
 
     useEffect(() => {
         if (!sessionId) {
-            console.error("No session ID found!"); 
             return;
         }
 

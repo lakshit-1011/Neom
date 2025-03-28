@@ -19,25 +19,25 @@ const reactions = [
   { min: -26, max: -30, src: anger, alt: "Segment 6" },
 ];
 
-export default function VibeMeter({ closeVibeModal, handleVibeSubmit,txt }) {
+export default function VibeMeter({ closeVibeModal, handleVibeSubmit,txt,totalRating }) {
   const userDetails = useSelector((store) => store.user);
   const { authorized, fullName } = userDetails;
 
-  const [rec, setRec] = useState(-0);
-  const [clickedImage,setClickcedImage]=useState(null);
+  const [rec, setRec] = useState(-totalRating);
+  // const [clickedImage,setClickcedImage]=useState(null);
   
-  const getRandomReactionValue = (min,max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  // const getRandomReactionValue = (min,max) => {
+  //   return Math.floor(Math.random() * (max - min + 1)) + min;
+  // };
   
-  const handleReaction = (reaction) => {
-    const randomValue = getRandomReactionValue(reaction.min,reaction.max);
-    console.log("randomvalue",randomValue);
-    setRec(randomValue);
-    setClickcedImage(reaction.alt);
-    console.log("clickedimage",clickedImage);
-    console.log("rec",rec);
-  };
+  // const handleReaction = (reaction) => {
+  //   const randomValue = getRandomReactionValue(reaction.min,reaction.max);
+  //   console.log("randomvalue",randomValue);
+  //   setRec(randomValue);
+  //   setClickcedImage(reaction.alt);
+  //   console.log("clickedimage",clickedImage);
+  //   console.log("rec",rec);
+  // };
 
 
 
@@ -64,7 +64,7 @@ export default function VibeMeter({ closeVibeModal, handleVibeSubmit,txt }) {
         </p>
         <div className="flex  flex-col items-center justify-center">
           <FeedbackSpeedometer down={150} rec={rec} />
-          <div className="flex z-[100] justify-evenly cursor-pointer items-center gap-5">
+          {/* <div className="flex z-[100] justify-evenly cursor-pointer items-center gap-5">
             <p className="text-[12px]">Click Emojis</p>
             {reactions.map((reaction, index) => (
               <img
@@ -75,7 +75,7 @@ export default function VibeMeter({ closeVibeModal, handleVibeSubmit,txt }) {
                 alt={reaction.alt}
               />
             ))}
-          </div>
+          </div> */}
         </div>
         <div className="mt-[18px]">
           <textarea

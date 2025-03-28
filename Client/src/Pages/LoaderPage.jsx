@@ -7,7 +7,7 @@ export default function LoaderPage() {
     console.log(userDetails);
   
     const {loading}=userDetails;
-    // console.log(authorized);
+    
     return (
       <div className="flex flex-col items-center justify-center h-[100vh]">
         <RingLoader  color="#89cfe5" loading={loading}/>

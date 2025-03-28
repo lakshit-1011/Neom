@@ -213,6 +213,7 @@ export default function MyModal({ detailedData, closeModal, cardid = null }) {
           handleVibeSubmit={handleVibeSubmit}
           closeVibeModal={closeVibeModal}
           txt={text}
+          totalRating={totalRating/5}
         />
       )}
     </>

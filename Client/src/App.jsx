@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import PaymentSuccessful from "./Pages/PaymentSuccesful";
 import PaymentFailed from "./Pages/PaymentFailed";
 import ScrollToTop from "./Components/Scroll/ScrolToTop";
+import ClientForm from "./Pages/ClientForm";
 
 export default function App() {
   
@@ -72,6 +73,7 @@ export default function App() {
             <Route path="SignIn" element={<SignInPage />} />
             <Route path="success" element={<PaymentSuccessful />} />
             <Route path="fail" element={<PaymentFailed />} />
+            <Route path="form" element={<ClientForm />} />
           </Routes>
         </div>
       </BrowserRouter>

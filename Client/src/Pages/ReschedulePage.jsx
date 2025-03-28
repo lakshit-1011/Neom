@@ -1,39 +1,44 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import { Swiper } from "swiper/react";
-import {SwiperSlide } from "swiper/react";
-import GolfMatch from "../Components/Modals/GolfMatch";
+import { SwiperSlide } from "swiper/react";
 import "swiper/css";
+
+import GolfMatch from "../Components/Modals/GolfMatch";
 import DashBoardCard3 from "../Components/DashboardCards/DashBoardCard3";
 import UpcommingButtons from "../Components/Upcomming/UpcommingButtons";
-import Header from "../Components/Header/Header";
-import Footer from "../Components/Footer/Footer";
-import { useSelector } from "react-redux";
 import ReschedulePrevious from "../Components/Reschedule/ReschedulePrevious";
 import UpcomingSchedule from "../Components/Reschedule/UpcomingSchedule";
-import { useState } from "react";
+
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
 
 export default function ReschedulePage() {
   const [golfModal, setGolfModal] = useState(false);
-  const [carddata,setCarddata]=useState(null);
-  const [cardtime,setCardTime]=useState(null);
-  const state=useLocation();
-  const data=state.state.text;
-  console.log(data);
+  const [carddata, setCarddata] = useState(null);
+  const [cardtime, setCardTime] = useState(null);
+  const state = useLocation();
+  const data = state.state.text;
 
-  const userDetails=useSelector((store)=>store.user);
-  const { authorized, fullName, totalCards, scheduledEvents,attendedEvents } = userDetails;
-  console.log(scheduledEvents);
-  const rescheduled=scheduledEvents.filter((event)=>event.id===data);
-  console.log(rescheduled);
-  const rescheduledGolfEvent=[{eventItem:rescheduled,time:"11:00 AM - 12:30 PM"},{eventItem:rescheduled,time:"1:30 PM - 2:30 PM"},{eventItem:rescheduled,time:"3:00 PM - 4:30 PM"}]
-  console.log(rescheduledGolfEvent[0].event);
+  const userDetails = useSelector((store) => store.user);
+  const { authorized, fullName, totalCards, scheduledEvents } =
+    userDetails;
 
+  const rescheduled = scheduledEvents.filter((event) => event.id === data);
 
-  const afterRescheduleEvent = totalCards.filter((event)=>event.status===null).slice(0,6);
-  
+  const rescheduledGolfEvent = [
+    { eventItem: rescheduled, time: "11:00 AM - 12:30 PM" },
+    { eventItem: rescheduled, time: "1:30 PM - 2:30 PM" },
+    { eventItem: rescheduled, time: "3:00 PM - 4:30 PM" },
+  ];
 
-  function handleClick(event,time) {
-    console.log(event);
+  const afterRescheduleEvent = totalCards
+    .filter((event) => event.status === null)
+    .slice(0, 6);
+
+  function handleClick(event, time) {
     setCarddata(event);
     setCardTime(time);
     setGolfModal(true);
@@ -70,7 +75,11 @@ export default function ReschedulePage() {
             >
               {check === 1
                 ? "We have a few similar event for you against your today's rescheduled event of Round of Golf. And one of them is just starting in an hour and 5 minutes drive away."
-                : `We have just ${carddata===null?"cancelled":"Rescheduled"} your ${carddata===null?"Round of Golf":carddata.name} event. We have found a few similar event for you against your today's cancelled event one of them is just starting in an hour and 5 minutes drive away`}
+                : `We have just ${
+                    carddata === null ? "cancelled" : "Rescheduled"
+                  } your ${
+                    carddata === null ? "Round of Golf" : carddata.name
+                  } event. We have found a few similar event for you against your today's cancelled event one of them is just starting in an hour and 5 minutes drive away`}
             </h1>
           </div>
         </div>
@@ -80,7 +89,10 @@ export default function ReschedulePage() {
               <div className="relative flex gap-[20px]">
                 {rescheduledGolfEvent.map((event) => (
                   <SwiperSlide>
-                    <ReschedulePrevious event={event} handleClick={handleClick}/>
+                    <ReschedulePrevious
+                      event={event}
+                      handleClick={handleClick}
+                    />
                   </SwiperSlide>
                 ))}
               </div>
@@ -117,10 +129,15 @@ export default function ReschedulePage() {
           </div>
         </div>
       </section>
-      
-      {golfModal && <GolfMatch closeModal={closeModal} carddata={carddata} cardtime={cardtime}/>}
-      <Footer />
 
+      {golfModal && (
+        <GolfMatch
+          closeModal={closeModal}
+          carddata={carddata}
+          cardtime={cardtime}
+        />
+      )}
+      <Footer />
     </>
   );
 }
